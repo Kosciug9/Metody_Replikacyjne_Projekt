@@ -7,20 +7,39 @@ przygotowanie <- function(plik, nazwa){
   return(ramka)
 }
 
-slaskie_gest <- przygotowanie("data/slaskieGestosc.csv","Gestosc")
-warmmaz_gest <- przygotowanie("data/warmmazGestosc.csv","Gestosc")
+# slaskie_gest <- przygotowanie("data/slaskieGestosc.csv","Gestosc")
+# warmmaz_gest <- przygotowanie("data/warmmazGestosc.csv","Gestosc")
+# 
+# slaskie_ludnosc <- przygotowanie("data/slaskieLudnosc.csv","Liczba_Ludnosci")
+# warmmaz_ludnosc <- przygotowanie("data/warmmazLudnosc.csv","Liczba_Ludnosci")
+# 
+# slaskie_Mieszkania <- przygotowanie("data/slaskieMieszkania.csv","Liczba_Mieszkan")
+# warmmaz_Mieszkania <- przygotowanie("data/warmmazMieszkania.csv","Liczba_Mieszkan")
+# 
+# slaskie_Sport <- przygotowanie("data/slaskieSport.csv","Ilosc_Obiektow")
+# warmmaz_Sport <- przygotowanie("data/warmmazSport.csv","Ilosc_Obiektow")
+# 
+# slaskie_Wynagrodzenia <- przygotowanie("data/slaskieWynagrodzenia.csv","Wynagrodzenia")
+# warmmaz_Wynagrodzenia <- przygotowanie("data/warmmazWynagrodzenia.csv","Wynagrodzenia")
 
-slaskie_ludnosc <- przygotowanie("data/slaskieLudnosc.csv","Liczba_Ludnosci")
-warmmaz_ludnosc <- przygotowanie("data/warmmazLudnosc.csv","Liczba_Ludnosci")
 
-slaskie_Mieszkania <- przygotowanie("data/slaskieMieszkania.csv","Liczba_Mieszkan")
-warmmaz_Mieszkania <- przygotowanie("data/warmmazMieszkania.csv","Liczba_Mieszkan")
 
-slaskie_Sport <- przygotowanie("data/slaskieSport.csv","Ilosc_Obiektow")
-warmmaz_Sport <- przygotowanie("data/warmmazSport.csv","Ilosc_Obiektow")
+#MUSIAŁAM TAK ZROBIĆ BO MI ŚCIEŻKA NIE DZIAŁAŁA
 
-slaskie_Wynagrodzenia <- przygotowanie("data/slaskieWynagrodzenia.csv","Wynagrodzenia")
-warmmaz_Wynagrodzenia <- przygotowanie("data/warmmazWynagrodzenia.csv","Wynagrodzenia")
+slaskie_gest <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieGestosc.csv","Gestosc")
+warmmaz_gest <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazGestosc.csv","Gestosc")
+
+slaskie_ludnosc <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieLudnosc.csv","Liczba_Ludnosci")
+warmmaz_ludnosc <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazLudnosc.csv","Liczba_Ludnosci")
+
+slaskie_Mieszkania <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieMieszkania.csv","Liczba_Mieszkan")
+warmmaz_Mieszkania <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazMieszkania.csv","Liczba_Mieszkan")
+
+slaskie_Sport <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieSport.csv","Ilosc_Obiektow")
+warmmaz_Sport <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazSport.csv","Ilosc_Obiektow")
+
+slaskie_Wynagrodzenia <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieWynagrodzenia.csv","Wynagrodzenia")
+warmmaz_Wynagrodzenia <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazWynagrodzenia.csv","Wynagrodzenia")
 
 #Dane na rok 2022 dla Powiatów województwa Śląskiego i Warmińsko-mazurskiego
 #Dane z Banku Danych Lokalnych GUS
@@ -47,7 +66,6 @@ warmmaz_Wynagrodzenia <- przygotowanie("data/warmmazWynagrodzenia.csv","Wynagrod
 #Przeliczenie na wskaźniki na  10 000 mieszkańców
 slaskie_Mieszkania$Liczba_Mieszkan <- slaskie_Mieszkania$Liczba_Mieszkan / slaskie_ludnosc$Liczba_Ludnosci * 10000
 warmmaz_Mieszkania$Liczba_Mieszkan <- warmmaz_Mieszkania$Liczba_Mieszkan / warmmaz_ludnosc$Liczba_Ludnosci * 10000
-
 
 
 #Testy permutacyjne
@@ -100,7 +118,7 @@ test_perm <- function(x,y,s){
 
 wyniki_perm <- data.frame(
   Zmienna = c("Gęstość zaludnienia","Mieszkania","Obiekty sportowe","Wynagrodzenia"),
-  Srednia = c(
+  Średnia = c(
     test_perm(slaskie_gest$Gestosc,warmmaz_gest$Gestosc,mean),
     test_perm(slaskie_Mieszkania$Liczba_Mieszkan,warmmaz_Mieszkania$Liczba_Mieszkan,mean),
     test_perm(slaskie_Sport$Ilosc_Obiektow,warmmaz_Sport$Ilosc_Obiektow,mean),
@@ -132,6 +150,70 @@ wyniki_perm
 #dla praktycznie każdej cechy rozkładu
 #Za to dla zmiennych Mieszkania, Obiekty Sportowe test nie wykazał istotnie statystycznych różnic
 #i sugeruje że mamy większe podobieństwo ich rozkładów dla badanych regionów.
+
+
+# Testy permutacjune a testy klasyczne
+# Porównuję wartość wartości oczekiwanej (w tym przypadku reprezentować ją bedzie średnia) i wariancji.
+
+wyniki_klasyczne <- data.frame(
+  Zmienna = c("Gęstość zaludnienia","Mieszkania","Obiekty sportowe","Wynagrodzenia"),
+  Średnia_perm = wyniki_perm$Średnia,
+  Średnia_klas = c(
+    t.test(slaskie_gest$Gestosc,warmmaz_gest$Gestosc)$p.value,
+    t.test(slaskie_Mieszkania$Liczba_Mieszkan,warmmaz_Mieszkania$Liczba_Mieszkan)$p.value,
+    t.test(slaskie_Sport$Ilosc_Obiektow,warmmaz_Sport$Ilosc_Obiektow)$p.value,
+    t.test(slaskie_Wynagrodzenia$Wynagrodzenia,warmmaz_Wynagrodzenia$Wynagrodzenia)$p.value
+  ),
+  Wariancja_perm = wyniki_perm$Wariancja,
+  Wariancja_klas = c(
+    var.test(slaskie_gest$Gestosc,warmmaz_gest$Gestosc)$p.value,
+    var.test(slaskie_Mieszkania$Liczba_Mieszkan,warmmaz_Mieszkania$Liczba_Mieszkan)$p.value,
+    var.test(slaskie_Sport$Ilosc_Obiektow,warmmaz_Sport$Ilosc_Obiektow)$p.value,
+    var.test(slaskie_Wynagrodzenia$Wynagrodzenia,warmmaz_Wynagrodzenia$Wynagrodzenia)$p.value
+  )
+)
+
+wyniki_klasyczne
+
+# Porównanie wartości średnich wykazuje niezgodność w wynikach statystyk, jednak wnioski pozostają takie same, jeśli chodzi o różnice między województwami.
+# Już tu możemy zobaczyć, że rozkład naszych danych nie jest idealnie normalny a 21 to zbyt mała liczba obserwacji, by testy były odporne na brak normalności.
+# Znaczącą różnicę możemy zauważyć przy badaniu wariancji. Z klasycznego testu F wnioskujemy, że wariancje między województwami, niezaleznie od zmiennej, są istotnie różne.
+# Dowodzi to, że testy permutacujne są tu lepszym wyborem.
+
+# Wybieramy zmienne objaśniające i zmienną objaśnianą
+
+# Tworzę ramkę danych, potrzebną mi do macierzy korelacji. Robie to osobno dla obu województw. Wracam również do "surowej" liczby mieszkań, bez przeliczania na 10 000 mieszkańców.
+
+slaskie <- data.frame(
+  Gęstość = slaskie_gest$Gestosc,
+  Ludność = slaskie_ludnosc$Liczba_Ludnosci,
+  Mieszkania = ((slaskie_Mieszkania$Liczba_Mieszkan/10000)*slaskie_ludnosc$Liczba_Ludnosci),
+  Sport = slaskie_Sport$Ilosc_Obiektow,
+  Wynagrodzenia = slaskie_Wynagrodzenia$Wynagrodzenia
+)
+
+warmmaz <- data.frame(
+  Gęstość = warmmaz_gest$Gestosc,
+  Ludność = warmmaz_ludnosc$Liczba_Ludnosci,
+  Mieszkania = ((warmmaz_Mieszkania$Liczba_Mieszkan/10000)*warmmaz_ludnosc$Liczba_Ludnosci),
+  Sport = warmmaz_Sport$Ilosc_Obiektow,
+  Wynagrodzenia = warmmaz_Wynagrodzenia$Wynagrodzenia
+)
+
+# Macierze korelacji 
+
+library(corrplot)
+corrplot(cor(slaskie))
+corrplot(cor(warmmaz))
+
+# Dla województwa Śląskiego:
+# - zmienne objaśniające: Gęstość, Ludność, Mieszkania
+# - zmianna objaśniana: Sport
+
+# Dla województwa Warmińsko - Mazurskiego:
+# - zmienne objaśniające: Sport, Wynagrodzenia
+# - zmienna objaśniana: Ludność
+
 
 
 
