@@ -41,6 +41,25 @@ warmmaz_Sport <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warm
 slaskie_Wynagrodzenia <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieWynagrodzenia.csv","Wynagrodzenia")
 warmmaz_Wynagrodzenia <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazWynagrodzenia.csv","Wynagrodzenia")
 
+#sciezka emiliaaaa
+
+slaskie_gest <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieGestosc.csv","Gestosc")
+warmmaz_gest <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazGestosc.csv","Gestosc")
+
+slaskie_ludnosc <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieLudnosc.csv","Liczba_Ludnosci")
+warmmaz_ludnosc <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazLudnosc.csv","Liczba_Ludnosci")
+
+slaskie_Mieszkania <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieMieszkania.csv","Liczba_Mieszkan")
+warmmaz_Mieszkania <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazMieszkania.csv","Liczba_Mieszkan")
+
+slaskie_Sport <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieSport.csv","Ilosc_Obiektow")
+warmmaz_Sport <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazSport.csv","Ilosc_Obiektow")
+
+slaskie_Wynagrodzenia <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieWynagrodzenia.csv","Wynagrodzenia")
+warmmaz_Wynagrodzenia <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazWynagrodzenia.csv","Wynagrodzenia")
+
+
+
 #Dane na rok 2022 dla Powiatów województwa Śląskiego i Warmińsko-mazurskiego
 #Dane z Banku Danych Lokalnych GUS
 #Zmienne:
@@ -210,10 +229,69 @@ corrplot(cor(warmmaz))
 # - zmienne objaśniające: Gęstość, Ludność, Mieszkania
 # - zmianna objaśniana: Sport
 
+# k-fold dla województwa śląskiego
+# k=9 (36 powiatów, więc po 4 w jednej grupie)
+
+library(dplyr)
+
+errors_slaskie <- data.frame(MAE=NULL, RMSE=NULL, MAPE=NULL)
+e <- vector()
+n <- nrow(slaskie)
+slaskie$k = rep(1:9, each= 4)[1:n]
+
+for(i in 1:9){
+  test  <- slaskie[slaskie$k == i,]
+  train <- slaskie[slaskie$k != i,]
+  
+  model <- lm(Sport ~ Gęstość + Ludność + Mieszkania, train)
+  p <- predict(model,test)
+  
+  e <- test$Sport - p
+  
+  df <- data.frame(
+    MAE  = mean(abs(e)),
+    RMSE = sqrt(mean(e^2)),
+    MAPE = mean(abs(e/test$Sport)) * 100
+  )
+  
+  errors_slaskie <- rbind(errors_slaskie, df)
+  
+}
+
+mean(errors_slaskie$MAPE)
+
+
+
 # Dla województwa Warmińsko - Mazurskiego:
 # - zmienne objaśniające: Sport, Wynagrodzenia
 # - zmienna objaśniana: Ludność
 
+# k-fold dla województwa warmińsko-mazurskiego
+# k=7 (21 powiatów, więc po 3 w jednej grupie)
 
+errors_warmmaz <- data.frame(MAE=NULL, RMSE=NULL, MAPE=NULL)
+e1 <- vector()
+n1 <- nrow(warmmaz)
+warmmaz$k = rep(1:7, each= 3)[1:n1]
 
+for(i in 1:7){
+  test  <- warmmaz[warmmaz$k == i,]
+  train <- warmmaz[warmmaz$k != i,]
+  
+  model <- lm( Ludność ~ Wynagrodzenia + Sport , train)
+  p <- predict(model,test)
+  
+  e1 <- test$Ludność - p
+  
+  df <- data.frame(
+    MAE  = mean(abs(e1)),
+    RMSE = sqrt(mean(e1^2)),
+    MAPE = mean(abs(e1/test$Sport)) * 100
+  )
+  
+  errors_warmmaz <- rbind(errors_warmmaz, df)
+  
+}
+
+mean(errors_warmmaz$MAPE)
 
