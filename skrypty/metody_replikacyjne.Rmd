@@ -1,30 +1,37 @@
-#Przygotowanie
-#Funkcja do wczytania pliku, usuniecia niepotrzebnej kolumny i zmianie nazwy jednej kolumny
+---
+title: "metoda walidacji krzyżowej na danych makroekonomicznych"
+author: "Wiktoria Kowalska"
+date: "2026-04-08"
+output: html_document
+---
+
+# Dane na rok 2022 dla Powiatów województwa Śląskiego i Warmińsko-mazurskiego
+
+## Dane z Banku Danych Lokalnych GUS
+
+Zmienne:
+
+1.Gęstość zaludnienia (ilość ludzi na $1 km^2$) 'slaskie_gest', `warmmaz_gest`
+
+2.Liczba ludności (pomocnicza zmienna do przeliczania wskaźników) `slaskie_ludnosc`, `warmmaz_ludnosc`
+
+3.Liczba lokali mieszkalnych sprzedanych w ramach transakcji rynkowych `slaskie_Mieszkania`, `warmmaz_Mieszkania` (pozwolę sobie przekształcić zmienną do postaci wskaźnika na mieszkańca)
+
+4.Liczba obiektów sportowych ogółem `slaskie_Sport`, `warmmaz_Sport` (pozwolę sobie przekształcić zmienną do postaci wskaźnika na mieszkańca)
+
+5.Przeciętne miesięczne wynagrodzenie brutto `slaskie_Wynagrodzenia`, `warmmaz_Wynagrodzenia`
+
+# Przygotowanie i wczytanie zmiennych
+
+Funkcja do wczytania pliku, usuniecia niepotrzebnej kolumny i zmianie nazwy jednej kolumny:
+
+```{r przygot, warning=FALSE, message=FALSE}
 przygotowanie <- function(plik, nazwa){
   ramka <- read.csv2(plik, sep=";")
   ramka <- ramka[,-4]
   names(ramka)[3] <- nazwa
   return(ramka)
 }
-
-# slaskie_gest <- przygotowanie("data/slaskieGestosc.csv","Gestosc")
-# warmmaz_gest <- przygotowanie("data/warmmazGestosc.csv","Gestosc")
-# 
-# slaskie_ludnosc <- przygotowanie("data/slaskieLudnosc.csv","Liczba_Ludnosci")
-# warmmaz_ludnosc <- przygotowanie("data/warmmazLudnosc.csv","Liczba_Ludnosci")
-# 
-# slaskie_Mieszkania <- przygotowanie("data/slaskieMieszkania.csv","Liczba_Mieszkan")
-# warmmaz_Mieszkania <- przygotowanie("data/warmmazMieszkania.csv","Liczba_Mieszkan")
-# 
-# slaskie_Sport <- przygotowanie("data/slaskieSport.csv","Ilosc_Obiektow")
-# warmmaz_Sport <- przygotowanie("data/warmmazSport.csv","Ilosc_Obiektow")
-# 
-# slaskie_Wynagrodzenia <- przygotowanie("data/slaskieWynagrodzenia.csv","Wynagrodzenia")
-# warmmaz_Wynagrodzenia <- przygotowanie("data/warmmazWynagrodzenia.csv","Wynagrodzenia")
-
-
-
-#MUSIAŁAM TAK ZROBIĆ BO MI ŚCIEŻKA NIE DZIAŁAŁA
 
 slaskie_gest <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieGestosc.csv","Gestosc")
 warmmaz_gest <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazGestosc.csv","Gestosc")
@@ -40,57 +47,23 @@ warmmaz_Sport <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warm
 
 slaskie_Wynagrodzenia <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieWynagrodzenia.csv","Wynagrodzenia")
 warmmaz_Wynagrodzenia <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazWynagrodzenia.csv","Wynagrodzenia")
+```
 
-#sciezka emiliaaaa
+Przeliczenie na wskaźniki na 10 000 mieszkańców:
 
-# slaskie_gest <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieGestosc.csv","Gestosc")
-# warmmaz_gest <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazGestosc.csv","Gestosc")
-# 
-# slaskie_ludnosc <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieLudnosc.csv","Liczba_Ludnosci")
-# warmmaz_ludnosc <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazLudnosc.csv","Liczba_Ludnosci")
-# 
-# slaskie_Mieszkania <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieMieszkania.csv","Liczba_Mieszkan")
-# warmmaz_Mieszkania <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazMieszkania.csv","Liczba_Mieszkan")
-# 
-# slaskie_Sport <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieSport.csv","Ilosc_Obiektow")
-# warmmaz_Sport <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazSport.csv","Ilosc_Obiektow")
-# 
-# slaskie_Wynagrodzenia <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieWynagrodzenia.csv","Wynagrodzenia")
-# warmmaz_Wynagrodzenia <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazWynagrodzenia.csv","Wynagrodzenia")
-# 
-# 
-
-#Dane na rok 2022 dla Powiatów województwa Śląskiego i Warmińsko-mazurskiego
-#Dane z Banku Danych Lokalnych GUS
-#Zmienne:
-
-#1.Gęstość zaludnienia (ilość ludzi na 1 km^2)
-# slaskie_gest, warmmaz_gest
-
-#2.Liczba ludności (pomocnicza zmienna do przeliczania wskaźników)
-#slaskie_ludnosc, warmmaz_ludnosc
-
-#3.Liczba lokali mieszkalnych sprzedanych w ramach transakcji rynkowych
-#sklaskie_Mieszkania, warmmaz_Mieszkania
-#(pozwolę sobie przekształcić zmienną do postaci wskaźnika na mieszkańca)
-
-#4.Liczba obiektów sportowych ogółem
-#slaskie_Sport, warmmaz_Sport
-#(pozwolę sobie przekształcić zmienną do postaci wskaźnika na mieszkańca)
-
-#5.Przeciętne miesięczne wynagrodzenie brutto
-#slaskie_Wynagrodzenia, warmmaz_Wynagrodzenia
-
-
-#Przeliczenie na wskaźniki na  10 000 mieszkańców
+```{r przeliczanie}
 slaskie_Mieszkania$Liczba_Mieszkan <- slaskie_Mieszkania$Liczba_Mieszkan / slaskie_ludnosc$Liczba_Ludnosci * 10000
 warmmaz_Mieszkania$Liczba_Mieszkan <- warmmaz_Mieszkania$Liczba_Mieszkan / warmmaz_ludnosc$Liczba_Ludnosci * 10000
 
+```
 
-#Testy permutacyjne
+# Testy permutacyjne
+
+## Dla wariancji
+
+```{r tpwar}
 set.seed(999)
 
-#Dla wariancji
 test_perm_var <- function(x,y){
   z <- c(x,y)
   n1 <- length(x)
@@ -113,8 +86,11 @@ test_perm_var <- function(x,y){
   }
   return(sum(stat>s)/10000)
 }
+```
 
-#Dla wartości oczekiwanych,skośności i kurtozy
+## Dla wartości oczekiwanych, skośności i kurtozy
+
+```{r tpwarocz, message=FALSE, warning=FALSE}
 library(moments)
 test_perm <- function(x,y,s){
   z <- c(x,y)
@@ -134,7 +110,11 @@ test_perm <- function(x,y,s){
   
   return(sum(stat > m)/10000)
 }
+```
 
+## Wyniki testów permutacyjnych
+
+```{r wtper}
 wyniki_perm <- data.frame(
   Zmienna = c("Gęstość zaludnienia","Mieszkania","Obiekty sportowe","Wynagrodzenia"),
   Średnia = c(
@@ -165,15 +145,15 @@ wyniki_perm <- data.frame(
 )
 
 wyniki_perm
-#Wyniki testów wskazują, że dla gęstości zaludnienia oraz wynagrodzeń występują istotne różnice między województwami
-#dla praktycznie każdej cechy rozkładu
-#Za to dla zmiennych Mieszkania, Obiekty Sportowe test nie wykazał istotnie statystycznych różnic
-#i sugeruje że mamy większe podobieństwo ich rozkładów dla badanych regionów.
+```
 
+Wyniki testów wskazują, że dla gęstości zaludnienia oraz wynagrodzeń występują istotne różnice między województwami dla praktycznie każdej cechy rozkładu. Za to dla zmiennych Mieszkania, Obiekty Sportowe test nie wykazał istotnie statystycznych różnic i sugeruje że mamy większe podobieństwo ich rozkładów dla badanych regionów.
 
 # Testy permutacjune a testy klasyczne
-# Porównuję wartość wartości oczekiwanej (w tym przypadku reprezentować ją bedzie średnia) i wariancji.
 
+Porównuję wartość wartości oczekiwanej (w tym przypadku reprezentować ją bedzie średnia) i wariancji.
+
+```{r tklas}
 wyniki_klasyczne <- data.frame(
   Zmienna = c("Gęstość zaludnienia","Mieszkania","Obiekty sportowe","Wynagrodzenia"),
   Średnia_perm = wyniki_perm$Średnia,
@@ -193,16 +173,15 @@ wyniki_klasyczne <- data.frame(
 )
 
 wyniki_klasyczne
+```
 
-# Porównanie wartości średnich wykazuje niezgodność w wynikach statystyk, jednak wnioski pozostają takie same, jeśli chodzi o różnice między województwami.
-# Już tu możemy zobaczyć, że rozkład naszych danych nie jest idealnie normalny a 21 i 36 to zbyt mała liczba obserwacji, by testy były odporne na brak normalności.
-# Znaczącą różnicę możemy zauważyć przy badaniu wariancji. Z klasycznego testu F wnioskujemy, że wariancje między województwami, niezaleznie od zmiennej, są istotnie różne.
-# Dowodzi to, że testy permutacujne są tu lepszym wyborem.
+Porównanie wartości średnich wykazuje niezgodność w wynikach statystyk, jednak wnioski pozostają takie same, jeśli chodzi o różnice między województwami. Już tu możemy zobaczyć, że rozkład naszych danych nie jest idealnie normalny a 21 i 36 to zbyt mała liczba obserwacji, by testy były odporne na brak normalności. Znaczącą różnicę możemy zauważyć przy badaniu wariancji. Z klasycznego testu F wnioskujemy, że wariancje między województwami, niezależnie od zmiennej, są istotnie różne. Dowodzi to, że testy permutacyjne są tu lepszym wyborem.
 
 # Wybieramy zmienne objaśniające i zmienną objaśnianą
 
-# Tworzę ramkę danych, potrzebną mi do macierzy korelacji. Robie to osobno dla obu województw. Wracam również do "surowej" liczby mieszkań, bez przeliczania na 10 000 mieszkańców.
+Tworzę ramkę danych, potrzebną mi do macierzy korelacji. Robie to osobno dla obu województw. Wracam również do "surowej" liczby mieszkań, bez przeliczania na 10 000 mieszkańców.
 
+```{r ramkadan}
 slaskie <- data.frame(
   Gęstość = slaskie_gest$Gestosc,
   Ludność = slaskie_ludnosc$Liczba_Ludnosci,
@@ -218,19 +197,25 @@ warmmaz <- data.frame(
   Sport = warmmaz_Sport$Ilosc_Obiektow,
   Wynagrodzenia = warmmaz_Wynagrodzenia$Wynagrodzenia
 )
+```
 
-# Macierze korelacji 
+## Macierze korelacji
 
+```{r mackor, message=FALSE, warning=FALSE}
 library(corrplot)
 corrplot(cor(slaskie))
 corrplot(cor(warmmaz))
+```
 
-# Dla województwa Śląskiego:
-# - zmienne objaśniające: Gęstość, Ludność, Mieszkania
-# - zmianna objaśniana: Sport
+Dla województwa Śląskiego: \* zmienne objaśniające: Gęstość, Ludność, Mieszkania \* zmianna objaśniana: Sport
 
-# k-fold dla województwa śląskiego
-# k=9 (36 powiatów, więc po 4 w jednej grupie)
+Dla województwa Warmińsko - Mazurskiego: \* zmienne objaśniające: Sport, Wynagrodzenia \* zmienna objaśniana: Ludność
+
+# Metoda k-fold dla województwa Śląskiego
+
+k=9 (36 powiatów, więc po 4 w jednej grupie)
+
+```{r kfoldslaskie, message=FALSE, warning=FALSE}
 
 library(dplyr)
 
@@ -259,16 +244,13 @@ for(i in 1:9){
 }
 
 mean(errors_slaskie$MAPE)
+```
 
+# Metoda k-fold dla województwa Warmińsko-Mazurskiego
 
+k=7 (21 powiatów, więc po 3 w jednej grupie)
 
-# Dla województwa Warmińsko - Mazurskiego:
-# - zmienne objaśniające: Sport, Wynagrodzenia
-# - zmienna objaśniana: Ludność
-
-# k-fold dla województwa warmińsko-mazurskiego
-# k=7 (21 powiatów, więc po 3 w jednej grupie)
-
+```{r kfoldwarmaz, message=FALSE, warning=FALSE}
 errors_warmmaz <- data.frame(MAE=NULL, RMSE=NULL, MAPE=NULL)
 e1 <- vector()
 n1 <- nrow(warmmaz)
@@ -294,4 +276,4 @@ for(i in 1:7){
 }
 
 mean(errors_warmmaz$MAPE)
-
+```
