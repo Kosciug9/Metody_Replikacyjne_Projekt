@@ -258,8 +258,10 @@ for(i in 1:9){
   
 }
 
-mean(errors_slaskie$MAPE)
+errors_slaskie
+mean(errors_slaskie$MAE)
 
+# Jak widzimy model dla województwa Śląskiego najlepiej prognozuję dla foldów od 2 do 4. Dla tak wyznaczonych zbiorów testowych i treningowych myli się o około 20 obiektów sportowych.
 
 
 # Dla województwa Warmińsko - Mazurskiego:
@@ -286,12 +288,15 @@ for(i in 1:7){
   df <- data.frame(
     MAE  = mean(abs(e1)),
     RMSE = sqrt(mean(e1^2)),
-    MAPE = mean(abs(e1/test$Sport)) * 100
+    MAPE = mean(abs(e1/test$Ludność)) * 100
   )
   
   errors_warmmaz <- rbind(errors_warmmaz, df)
   
 }
 
+errors_warmmaz
 mean(errors_warmmaz$MAPE)
+# Dla województwa Warmińsko - Mazurskiego najskuteczniejszą prognozę daję nam fold 3 z jedynie 13% błędem.
+
 

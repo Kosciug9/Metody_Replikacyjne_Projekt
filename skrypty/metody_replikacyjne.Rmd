@@ -207,11 +207,17 @@ corrplot(cor(slaskie))
 corrplot(cor(warmmaz))
 ```
 
-Dla województwa Śląskiego: \* zmienne objaśniające: Gęstość, Ludność, Mieszkania \* zmianna objaśniana: Sport
+Dla województwa Śląskiego:
 
-Dla województwa Warmińsko - Mazurskiego: \* zmienne objaśniające: Sport, Wynagrodzenia \* zmienna objaśniana: Ludność
+* zmienne objaśniające: Gęstość, Ludność, Mieszkania 
+* zmianna objaśniana: Sport
 
-# Metoda k-fold dla województwa Śląskiego
+Dla województwa Warmińsko - Mazurskiego:
+
+* zmienne objaśniające: Sport, Wynagrodzenia 
+* zmienna objaśniana: Ludność
+
+# Metoda k-fold dla województwa Śląskiego i sprawdzenie jakości prognozy
 
 k=9 (36 powiatów, więc po 4 w jednej grupie)
 
@@ -243,10 +249,12 @@ for(i in 1:9){
   
 }
 
+errors_slaskie
 mean(errors_slaskie$MAPE)
 ```
+Jak widzimy model dla województwa Śląskiego najlepiej prognozuję dla foldów od 2 do 4. Dla tak wyznaczonych zbiorów testowych i treningowych myli się o około 20 obiektów sportowych.
 
-# Metoda k-fold dla województwa Warmińsko-Mazurskiego
+# Metoda k-fold dla województwa Warmińsko-Mazurskiego i sprawdzenie jakości prognozy
 
 k=7 (21 powiatów, więc po 3 w jednej grupie)
 
@@ -268,12 +276,14 @@ for(i in 1:7){
   df <- data.frame(
     MAE  = mean(abs(e1)),
     RMSE = sqrt(mean(e1^2)),
-    MAPE = mean(abs(e1/test$Sport)) * 100
+    MAPE = mean(abs(e1/test$Ludność)) * 100
   )
   
   errors_warmmaz <- rbind(errors_warmmaz, df)
   
 }
 
+errors_warmmaz
 mean(errors_warmmaz$MAPE)
 ```
+Dla województwa Warmińsko - Mazurskiego najskuteczniejszą prognozę daję nam fold 3 z jedynie 13% błędem.
