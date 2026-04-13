@@ -259,9 +259,38 @@ for(i in 1:9){
 }
 
 errors_slaskie
-mean(errors_slaskie$MAE)
 
-# Jak widzimy model dla województwa Śląskiego najlepiej prognozuję dla foldów od 2 do 4. Dla tak wyznaczonych zbiorów testowych i treningowych myli się o około 20 obiektów sportowych.
+# Jak widzimy model dla województwa Śląskiego najlepiej prognozuję dla foldów od 2 do 4. Dla tak wyznaczonych zbiorów testowych i treningowych myli się o około 20 obiektów sportowych, co patrząc na MAPE nie jest złym wynikiem.
+# Dobra jakość prognozy nie występuje, jednak dla każdego foldu. Fold 9 np. ma błąd MAPE sięgający prawie 200%. Biorąc pod uwagę rozpiętość naszych danych (od 12 do 163) model radzi sobie dobrze przy większych wartościach, czego nie można powiedzieć, jeśli skupiamy się na tych mniejszych.
+
+wyniki_error_slaskie <- data.frame(
+  Zmienna = c("MAE","RMSE","MAPE"),
+  Średnia = c(
+    mean(errors_slaskie$MAE),
+    mean(errors_slaskie$RMSE),
+    mean(errors_slaskie$MAPE)),
+  Odchylenie_standardowe = c(
+    sd(errors_slaskie$MAE),
+    sd(errors_slaskie$RMSE),
+    sd(errors_slaskie$MAPE)
+  ),
+  Min = c(
+    min(errors_slaskie$MAE),
+    min(errors_slaskie$RMSE),
+    min(errors_slaskie$MAPE)
+  ),
+  Max = c(
+    max(errors_slaskie$MAE),
+    max(errors_slaskie$RMSE),
+    max(errors_slaskie$MAPE)
+  )
+)
+
+wyniki_error_slaskie
+
+
+# Z powyższych statystyk wynika, że błędy są rozłożone dość równomiernie, brak outlinerów (wnioskujemy z tego, że średnie MAE i RMSE nie odbiegają znacznie od siebie).
+# Największą wartość ma współczynnik MAPE (przeszło 50%) zarówno, jeśli chodzi o jego średnią jak i odchylenie standardowe. Potwierdza to stwierdzenie, że model prognozuje lepiej dla wyzszych wartość.   
 
 
 # Dla województwa Warmińsko - Mazurskiego:
@@ -296,7 +325,34 @@ for(i in 1:7){
 }
 
 errors_warmmaz
-mean(errors_warmmaz$MAPE)
-# Dla województwa Warmińsko - Mazurskiego najskuteczniejszą prognozę daję nam fold 3 z jedynie 13% błędem.
+
+# Dla województwa Warmińsko - Mazurskiego najskuteczniejszą prognozę daję nam fold 3 z jedynie 13% błędem. MAPE jest, jednak znów zróżnicowany dla poszczególnych foldów. Waha się od prognozy bardzo dobrej (13%) do niedokładnej (67%). Po raz kolejny może mieć to związek z rozpiętością danych.
+
+wyniki_error_warmmaz <- data.frame(
+  Zmienna = c("MAE","RMSE","MAPE"),
+  Średnia = c(
+    mean(errors_warmmaz$MAE),
+    mean(errors_warmmaz$RMSE),
+    mean(errors_warmmaz$MAPE)),
+  Odchylenie_standardowe = c(
+    sd(errors_warmmaz$MAE),
+    sd(errors_warmmaz$RMSE),
+    sd(errors_warmmaz$MAPE)
+  ),
+  Min = c(
+    min(errors_warmmaz$MAE),
+    min(errors_warmmaz$RMSE),
+    min(errors_warmmaz$MAPE)
+  ),
+  Max = c(
+    max(errors_warmmaz$MAE),
+    max(errors_warmmaz$RMSE),
+    max(errors_warmmaz$MAPE)
+  )
+)
+
+wyniki_error_warmmaz
+
+# Tutaj również nie mamy problemu z outlinerami w błędach. Średnie MAPE wynosi 36%, co jest lepszym wynikiem w porówaniu z województwem Śląskim.
 
 
