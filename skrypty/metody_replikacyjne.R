@@ -7,58 +7,22 @@ przygotowanie <- function(plik, nazwa){
   return(ramka)
 }
 
-# slaskie_gest <- przygotowanie("data/slaskieGestosc.csv","Gestosc")
-# warmmaz_gest <- przygotowanie("data/warmmazGestosc.csv","Gestosc")
-# 
-# slaskie_ludnosc <- przygotowanie("data/slaskieLudnosc.csv","Liczba_Ludnosci")
-# warmmaz_ludnosc <- przygotowanie("data/warmmazLudnosc.csv","Liczba_Ludnosci")
-# 
-# slaskie_Mieszkania <- przygotowanie("data/slaskieMieszkania.csv","Liczba_Mieszkan")
-# warmmaz_Mieszkania <- przygotowanie("data/warmmazMieszkania.csv","Liczba_Mieszkan")
-# 
-# slaskie_Sport <- przygotowanie("data/slaskieSport.csv","Ilosc_Obiektow")
-# warmmaz_Sport <- przygotowanie("data/warmmazSport.csv","Ilosc_Obiektow")
-# 
-# slaskie_Wynagrodzenia <- przygotowanie("data/slaskieWynagrodzenia.csv","Wynagrodzenia")
-# warmmaz_Wynagrodzenia <- przygotowanie("data/warmmazWynagrodzenia.csv","Wynagrodzenia")
+slaskie_gest <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieGestosc.csv","Gestosc")
+warmmaz_gest <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazGestosc.csv","Gestosc")
+
+slaskie_ludnosc <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieLudnosc.csv","Liczba_Ludnosci")
+warmmaz_ludnosc <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazLudnosc.csv","Liczba_Ludnosci")
+
+slaskie_Mieszkania <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieMieszkania.csv","Liczba_Mieszkan")
+warmmaz_Mieszkania <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazMieszkania.csv","Liczba_Mieszkan")
+
+slaskie_Sport <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieSport.csv","Ilosc_Obiektow")
+warmmaz_Sport <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazSport.csv","Ilosc_Obiektow")
+
+slaskie_Wynagrodzenia <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieWynagrodzenia.csv","Wynagrodzenia")
+warmmaz_Wynagrodzenia <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazWynagrodzenia.csv","Wynagrodzenia")
 
 
-
-#MUSIAŁAM TAK ZROBIĆ BO MI ŚCIEŻKA NIE DZIAŁAŁA
-
-slaskie_gest <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieGestosc.csv","Gestosc")
-warmmaz_gest <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazGestosc.csv","Gestosc")
-
-slaskie_ludnosc <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieLudnosc.csv","Liczba_Ludnosci")
-warmmaz_ludnosc <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazLudnosc.csv","Liczba_Ludnosci")
-
-slaskie_Mieszkania <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieMieszkania.csv","Liczba_Mieszkan")
-warmmaz_Mieszkania <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazMieszkania.csv","Liczba_Mieszkan")
-
-slaskie_Sport <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieSport.csv","Ilosc_Obiektow")
-warmmaz_Sport <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazSport.csv","Ilosc_Obiektow")
-
-slaskie_Wynagrodzenia <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieWynagrodzenia.csv","Wynagrodzenia")
-warmmaz_Wynagrodzenia <- przygotowanie("D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazWynagrodzenia.csv","Wynagrodzenia")
-
-#sciezka emiliaaaa
-
-# slaskie_gest <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieGestosc.csv","Gestosc")
-# warmmaz_gest <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazGestosc.csv","Gestosc")
-# 
-# slaskie_ludnosc <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieLudnosc.csv","Liczba_Ludnosci")
-# warmmaz_ludnosc <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazLudnosc.csv","Liczba_Ludnosci")
-# 
-# slaskie_Mieszkania <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieMieszkania.csv","Liczba_Mieszkan")
-# warmmaz_Mieszkania <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazMieszkania.csv","Liczba_Mieszkan")
-# 
-# slaskie_Sport <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieSport.csv","Ilosc_Obiektow")
-# warmmaz_Sport <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazSport.csv","Ilosc_Obiektow")
-# 
-# slaskie_Wynagrodzenia <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieWynagrodzenia.csv","Wynagrodzenia")
-# warmmaz_Wynagrodzenia <- przygotowanie("C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazWynagrodzenia.csv","Wynagrodzenia")
-# 
-# 
 
 #Dane na rok 2022 dla Powiatów województwa Śląskiego i Warmińsko-mazurskiego
 #Dane z Banku Danych Lokalnych GUS
