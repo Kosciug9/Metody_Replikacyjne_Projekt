@@ -366,7 +366,7 @@ Warmińsko-mazurskiego</h2>
 <h3>Dane z Banku Danych Lokalnych GUS</h3>
 <p>Zmienne:</p>
 <p>1.Gęstość zaludnienia (ilość ludzi na <span class="math inline">\(1
-km^2\)</span>) ‘slaskie_gest’, <code>warmmaz_gest</code></p>
+km^2\)</span>) <code>slaskie_gest</code>, <code>warmmaz_gest</code></p>
 <p>2.Liczba ludności (pomocnicza zmienna do przeliczania wskaźników)
 <code>slaskie_ludnosc</code>, <code>warmmaz_ludnosc</code></p>
 <p>3.Liczba lokali mieszkalnych sprzedanych w ramach transakcji
@@ -392,20 +392,37 @@ nazwy jednej kolumny:</p>
   return(ramka)
 }
 
-slaskie_gest &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieGestosc.csv&quot;,&quot;Gestosc&quot;)
-warmmaz_gest &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazGestosc.csv&quot;,&quot;Gestosc&quot;)
+#slaskie_gest &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieGestosc.csv&quot;,&quot;Gestosc&quot;)
+#warmmaz_gest &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazGestosc.csv&quot;,&quot;Gestosc&quot;)
 
-slaskie_ludnosc &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieLudnosc.csv&quot;,&quot;Liczba_Ludnosci&quot;)
-warmmaz_ludnosc &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazLudnosc.csv&quot;,&quot;Liczba_Ludnosci&quot;)
+#slaskie_ludnosc &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieLudnosc.csv&quot;,&quot;Liczba_Ludnosci&quot;)
+#warmmaz_ludnosc &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazLudnosc.csv&quot;,&quot;Liczba_Ludnosci&quot;)
 
-slaskie_Mieszkania &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieMieszkania.csv&quot;,&quot;Liczba_Mieszkan&quot;)
-warmmaz_Mieszkania &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazMieszkania.csv&quot;,&quot;Liczba_Mieszkan&quot;)
+#slaskie_Mieszkania &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieMieszkania.csv&quot;,&quot;Liczba_Mieszkan&quot;)
+#warmmaz_Mieszkania &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazMieszkania.csv&quot;,&quot;Liczba_Mieszkan&quot;)
 
-slaskie_Sport &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieSport.csv&quot;,&quot;Ilosc_Obiektow&quot;)
-warmmaz_Sport &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazSport.csv&quot;,&quot;Ilosc_Obiektow&quot;)
+#slaskie_Sport &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieSport.csv&quot;,&quot;Ilosc_Obiektow&quot;)
+#warmmaz_Sport &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazSport.csv&quot;,&quot;Ilosc_Obiektow&quot;)
 
-slaskie_Wynagrodzenia &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieWynagrodzenia.csv&quot;,&quot;Wynagrodzenia&quot;)
-warmmaz_Wynagrodzenia &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazWynagrodzenia.csv&quot;,&quot;Wynagrodzenia&quot;)</code></pre>
+
+
+# slaskie_Wynagrodzenia &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\slaskieWynagrodzenia.csv&quot;,&quot;Wynagrodzenia&quot;)
+# warmmaz_Wynagrodzenia &lt;- przygotowanie(&quot;D:\\MRP\\Metody_Replikacyjne_Projekt\\data\\warmmazWynagrodzenia.csv&quot;,&quot;Wynagrodzenia&quot;)
+
+slaskie_gest &lt;- przygotowanie(&quot;C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieGestosc.csv&quot;,&quot;Gestosc&quot;)
+warmmaz_gest &lt;- przygotowanie(&quot;C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazGestosc.csv&quot;,&quot;Gestosc&quot;)
+
+slaskie_ludnosc &lt;- przygotowanie(&quot;C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieLudnosc.csv&quot;,&quot;Liczba_Ludnosci&quot;)
+warmmaz_ludnosc &lt;- przygotowanie(&quot;C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazLudnosc.csv&quot;,&quot;Liczba_Ludnosci&quot;)
+
+slaskie_Mieszkania &lt;- przygotowanie(&quot;C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieMieszkania.csv&quot;,&quot;Liczba_Mieszkan&quot;)
+warmmaz_Mieszkania &lt;- przygotowanie(&quot;C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazMieszkania.csv&quot;,&quot;Liczba_Mieszkan&quot;)
+
+slaskie_Sport &lt;- przygotowanie(&quot;C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieSport.csv&quot;,&quot;Ilosc_Obiektow&quot;)
+warmmaz_Sport &lt;- przygotowanie(&quot;C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazSport.csv&quot;,&quot;Ilosc_Obiektow&quot;)
+
+slaskie_Wynagrodzenia &lt;- przygotowanie(&quot;C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\slaskieWynagrodzenia.csv&quot;,&quot;Wynagrodzenia&quot;)
+warmmaz_Wynagrodzenia &lt;- przygotowanie(&quot;C:\\Users\\emilk\\Desktop\\MR-projekt\\Metody_Replikacyjne_Projekt\\data\\warmmazWynagrodzenia.csv&quot;,&quot;Wynagrodzenia&quot;)</code></pre>
 <p>Przeliczenie na wskaźniki na 10 000 mieszkańców:</p>
 <pre class="r"><code>slaskie_Mieszkania$Liczba_Mieszkan &lt;- slaskie_Mieszkania$Liczba_Mieszkan / slaskie_ludnosc$Liczba_Ludnosci * 10000
 warmmaz_Mieszkania$Liczba_Mieszkan &lt;- warmmaz_Mieszkania$Liczba_Mieszkan / warmmaz_ludnosc$Liczba_Ludnosci * 10000</code></pre>
@@ -707,7 +724,7 @@ daję nam fold 3 z jedynie 13% błędem. MAPE jest, jednak znów
 zróżnicowany dla poszczególnych foldów. Waha się od prognozy bardzo
 dobrej (13%) do niedokładnej (67%). Po raz kolejny może mieć to związek
 z rozpiętością danych.</p>
-<pre class="rkfoldwynwarmaz"><code>wyniki_error_warmmaz &lt;- data.frame(
+<pre class="r"><code>wyniki_error_warmmaz &lt;- data.frame(
   Zmienna = c(&quot;MAE&quot;,&quot;RMSE&quot;,&quot;MAPE&quot;),
   Średnia = c(
     mean(errors_warmmaz$MAE),
@@ -730,8 +747,11 @@ z rozpiętością danych.</p>
   )
 )
 
-wyniki_error_warmmaz
-</code></pre>
+wyniki_error_warmmaz</code></pre>
+<pre><code>##   Zmienna     Średnia Odchylenie_standardowe        Min         Max
+## 1     MAE 21037.09382            15758.07725 7416.92042 54357.27708
+## 2    RMSE 24690.07299            17647.10119 8197.28407 61248.81949
+## 3    MAPE    36.44904               20.73267   13.02176    67.21706</code></pre>
 <p>Tutaj również nie mamy problemu z outlinerami w błędach. Średnie MAPE
 wynosi 36%, co jest lepszym wynikiem w porówaniu z województwem
 Śląskim.</p>
